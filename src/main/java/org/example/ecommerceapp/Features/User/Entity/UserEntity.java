@@ -8,6 +8,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.example.ecommerceapp.Features.Address.Entity.Address;
+import org.example.ecommerceapp.Features.Authentication.Entity.Login;
 import org.example.ecommerceapp.Features.Authentication.Entity.TokenEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -69,7 +70,7 @@ public class UserEntity implements UserDetails {
     private String email;
     @JsonIgnoreProperties("user")
     @OneToOne(cascade = CascadeType.ALL)
-    private TokenEntity login;
+    private Login login;
 
     @JsonIgnoreProperties("user")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

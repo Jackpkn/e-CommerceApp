@@ -5,6 +5,9 @@ import java.util.function.Function;
 
 import javax.crypto.SecretKey;
 
+import org.example.ecommerceapp.Features.Authentication.Entity.Login;
+import org.hibernate.internal.build.AllowNonPortable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -30,7 +33,7 @@ public class JwtService {
     private long refreshTokenExpire;
 
     private final TokenRepository tokenRepository;
-
+    @Autowired
     public JwtService(TokenRepository tokenRepository) {
         this.tokenRepository = tokenRepository;
     }
@@ -40,14 +43,7 @@ public class JwtService {
     }
 
     public boolean isValid(String token, UserDetails user) {
-        String username = extractUsername(token);
-
-        boolean validToken = tokenRepository
-                .findByAccessToken(token)
-                .map(t -> !t.getIsLoggedOut())
-                .orElse(false);
-
-        return (username.equals(user.getUsername())) && isTokenExpire(token) && validToken;
+        return false;
     }
 
     public boolean isValidToken(String token) {
@@ -136,5 +132,10 @@ public class JwtService {
         }
 
         return authHeader.substring(7);
+    }
+
+    public Login isTokenValid(String key) {
+
+        return new Login();
     }
 }

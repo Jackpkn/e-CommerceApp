@@ -22,13 +22,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity // Add this annotation
-@Table(name = "addresses") // It's a good practice to specify the table name
+@Entity
+@Table(name = "addresses")
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Address {
 
     @Id
